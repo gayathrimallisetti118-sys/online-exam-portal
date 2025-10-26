@@ -1,0 +1,37 @@
+pipeline {
+    agent any
+        options {
+        timeout(time: 1, unit: 'HOURS') 
+        timestamps()
+        }
+    stages {
+        stage('git clone') {
+            steps {
+                checkout scmGit(branches: [[name: '*/dev']], extensions: [], userRemoteConfigs: [[credentialsId: 'jenkins-github-ssh-key', url: 'git@github.com:gayathrimallisetti118-sys/online-exam-portal.git']])
+            }
+         }
+         stage('npm build') {
+            steps {
+                sh '''
+                 cd frontend
+                 npm install
+                 npm run build
+                 '''
+            }
+         }
+        stage('archive artifacts') {
+            steps {
+               archiveArtifacts artifacts: 'frontend/build/**
+           }
+        }  
+       stage('deploy to nginx') {
+         steps {
+             sh '''
+              sudo rm -rf /usr/share/nginx/html/*
+              sudo cp -r ${WORKSPACE}/frontend/build/* /usr/share/nginx/html/
+              sudo systemctl restart nginx
+              '''  
+            }
+        }
+    }
+}
