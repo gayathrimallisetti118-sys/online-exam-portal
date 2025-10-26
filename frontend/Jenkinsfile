@@ -18,12 +18,7 @@ pipeline {
                  npm run build
                  '''
             }
-         }
-        stage('archive artifacts') {
-            steps {
-               archiveArtifacts artifacts: 'frontend/build/**
-           }
-        }  
+         }  
        stage('deploy to nginx') {
          steps {
              sh '''
