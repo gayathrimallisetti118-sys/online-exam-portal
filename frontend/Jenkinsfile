@@ -23,7 +23,7 @@ pipeline {
          steps {
              sh '''
               sudo rm -rf /usr/share/nginx/html/*
-              sudo cp -r /var/lib/jenkins/workspace/pipelines/npm integration/frontend/build/* /usr/share/nginx/html/
+              sudo cp $workspace/frontend/build/index.html /usr/share/nginx/html/
               sudo systemctl restart nginx
               '''  
             }
