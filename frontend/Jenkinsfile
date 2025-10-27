@@ -22,8 +22,7 @@ pipeline {
        stage('deploy to nginx') {
          steps {
              sh '''
-              sudo rm -rf /usr/share/nginx/html/*
-              sudo cp $workspace/frontend/build/index.html /usr/share/nginx/html/
+              sudo cp /frontend/build/index.html /usr/share/nginx/html
               sudo systemctl restart nginx
               '''  
             }
