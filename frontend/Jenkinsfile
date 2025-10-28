@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+        options {
+        timeout(time: 1, unit: 'HOURS') 
+        timestamps()
+        }
+    stages {
+        stage('git clone') {
+            steps {
+                checkout scmGit(branches: [[name: '*/dev']], extensions: [], userRemoteConfigs: [[credentialsId: 'jenkins-github-ssh-key', url: 'git@github.com:gayathrimallisetti118-sys/online-exam-portal.git']])
+            }
+         }
+         stage('npm build') {
+            steps {
+                sh '''
+                 cd frontend
+                 npm install
+                 npm run build
+                 '''
+            }
+         }  
+       stage('deploy to nginx') {
+         steps {
+             sh 'sudo cp -r "/var/lib/jenkins/workspace/pipelines/npm integration/frontend/build/"* /usr/share/nginx/html/'  
+            }
+        }
+    }
+}
