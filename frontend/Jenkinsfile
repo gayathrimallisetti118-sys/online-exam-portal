@@ -21,10 +21,7 @@ pipeline {
          }  
        stage('deploy to nginx') {
          steps {
-             sh '''
-              sudo cp -r "/var/lib/jenkins/workspace/pipelines/npm integration/frontend/build/"* /usr/share/nginx/html/
-              sudo systemctl restart nginx
-              '''  
+             sh 'sudo cp -r "/var/lib/jenkins/workspace/pipelines/npm integration/frontend/build/"* /usr/share/nginx/html/'  
             }
         }
     }
