@@ -55,7 +55,7 @@ pipeline {
               docker pull gayathrimallisetti/frontend:latest
               docker stop myapp
               docker rm myapp
-              docker run -d -p 80:80 --name myapp gayathrimallisetti/frontend:latest
+              docker run -d -p 81:80 --name myapp gayathrimallisetti/frontend:latest
               '''
             }
         }
