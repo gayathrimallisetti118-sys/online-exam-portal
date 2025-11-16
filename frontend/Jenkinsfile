@@ -34,7 +34,7 @@ pipeline {
         stage('Build docker image') {
             steps {
               script {
-                  dockerImage = docker.build("gayathrimallisetti/frontend:${BUILD_NUMBER}")
+                  dockerImage = docker.build("gayathrimallisetti/frontend:${BUILD_NUMBER}", "frontend")
               }
             }
         }
