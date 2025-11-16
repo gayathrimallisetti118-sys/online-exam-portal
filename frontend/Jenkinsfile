@@ -1,7 +1,7 @@
 pipeline {
     agent any
         environment {
-            DOCKERHUB_CREDENTIALS='dockerhub-jenkins'
+            DOCKERHUB_CREDENTIALS='dokerhub-jenkins'
             IMAGE = "gayathrimallisetti/frontend"
         }
         options {
