@@ -52,7 +52,7 @@ pipeline {
          steps {
              sh '''
               docker pull ${IMAGE}:latest
-              docker run -d -p 80:80 --name myapp gayathrimallisetti:latest
+              docker run -d -p 80:80 --name myapp gayathrimallisetti/frontend:latest
               '''
             }
         }
