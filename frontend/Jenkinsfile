@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('dynamic build name') {
             steps {
-            scripts {
+              script {
                 currentBuild.displayName = "#${BUILD_NUMBER} -npm"
                 currentBuild.description = "build for npm"
             }
