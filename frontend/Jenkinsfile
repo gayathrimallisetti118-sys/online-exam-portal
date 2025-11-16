@@ -51,7 +51,9 @@ pipeline {
        stage('deploy container') {
          steps {
              sh '''
-              docker pull ${IMAGE}:latest
+              docker pull gayathrimallisetti/frontend:latest
+              docker stop myapp
+              docker rm myapp
               docker run -d -p 80:80 --name myapp gayathrimallisetti/frontend:latest
               '''
             }
