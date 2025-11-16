@@ -50,8 +50,10 @@ pipeline {
         }
        stage('deploy container') {
          steps {
-             script {
-                 sh                  
+             sh '''
+              docker pull ${IMAGE}:latest
+              docker run -d -p 8080:8080 --name myapp ${IMAGE}:latest
+              '''
             }
         }
     }
